@@ -12,12 +12,12 @@ st.set_page_config(page_title="FraudOps Dashboard", page_icon="🛡️", layout=
 # --- Data Loading (Cached for performance) ---
 @st.cache_data
 def load_data():
-    return pd.read_csv('dashboard_data.csv')
+    return pd.read_csv('dashboard/dashboard_data.csv')
 
 @st.cache_resource
 def load_models():
-    model = joblib.load('model.pkl')
-    explainer = joblib.load('explainer.pkl')
+    model = joblib.load('dashboard/model.pkl')
+    explainer = joblib.load('dashboard/explainer.pkl')
     return model, explainer
 
 df = load_data()
