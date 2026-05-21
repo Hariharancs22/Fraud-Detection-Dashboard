@@ -59,7 +59,11 @@ if page == "Overview & Insights":
     total_txns = len(filtered_df)
     total_fraud = len(filtered_df[filtered_df['Fraud_Probability'] >= 0.30]) # Using your optimal 0.30 threshold!
     fraud_rate = (total_fraud / total_txns) * 100 if total_txns > 0 else 0
-    avg_fraud_amt = filtered_df[filtered_df['Fraud_Probability'] >= 0.30]['TransactionAmt'].mean()
+   # Safely try to calculate the average amount, fallback to 0 if column is missing
+    try:
+        avg_fraud_amt = filtered_df[filtered_df['Fraud_Probability'] >= 0.30]['TransactionAmt'].mean()
+    except KeyError:
+        avg_fraud_amt = 0.0
 
     col1.metric("Total Transactions", f"{total_txns:,}")
     col2.metric("Detected Frauds (Threshold 0.30)", f"{total_fraud:,}")
