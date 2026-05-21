@@ -25,10 +25,12 @@ model, explainer = load_models()
 
 # Ensure we have our derived columns from Task 5 for visualization
 if 'Fraud_Probability' not in df.columns:
-   # 1. Drop the dashboard labels so we only have the math features left
-    X_live = df.drop(['True_Label', 'Risk_Tier', 'Fraud_Probability'], axis=1, errors='ignore')
-# 2. Add ".values" to strip the column names so XGBoost doesn't panic
-    df['Fraud_Probability'] = model.predict_proba(X_live.values)[:, 1]
+  # 1. Ask the model exactly what columns it needs
+    expected_features = model.feature_names_in_
+    X_live = df.reindex(columns=expected_features, fill_value=0)
+
+# 3. Predict directly on the perfectly matched dataframe!
+df['Fraud_Probability'] = model.predict_proba(X_live)[:, 1]
 def assign_tier(prob):
     if prob >= 0.75: return 'Critical Risk'
     elif prob >= 0.40: return 'Suspicious'
