@@ -25,7 +25,11 @@ model, explainer = load_models()
 
 # Ensure we have our derived columns from Task 5 for visualization
 if 'Fraud_Probability' not in df.columns:
-    df['Fraud_Probability'] = model.predict_proba(df.drop(['True_Label', 'Risk_Tier', 'Fraud_Probability'], axis=1, errors='ignore'))[:, 1]
+    # Ask the model exactly what columns it needs
+    expected_features = model.feature_names_in_
+
+# Feed ONLY those exact columns into the prediction
+    df['Fraud_Probability'] = model.predict_proba(df[expected_features])[:, 1]
 
 def assign_tier(prob):
     if prob >= 0.75: return 'Critical Risk'
