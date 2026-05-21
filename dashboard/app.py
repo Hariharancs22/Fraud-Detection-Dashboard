@@ -146,3 +146,6 @@ elif page == "SHAP Explainer":
                 st.warning("⚠️ **Review Required:** This transaction has conflicting signals. While some elements align with normal behavior (blue bars), certain anomalies (red bars) elevated the risk enough to require manual analyst review.")
             else:
                 st.success("✅ **Legitimate Transaction:** The blue bars dominate the decision, indicating that this transaction perfectly aligns with safe, historical customer patterns.")
+# Force the dashboard to print the raw data to the screen so we can inspect it!
+st.write("DEBUG: Here is the data the app is reading:")
+st.write(df.head())
