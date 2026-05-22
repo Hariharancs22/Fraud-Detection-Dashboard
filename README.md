@@ -2,7 +2,8 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge.svg)](https://fraud-detection-dashboard-hariharancs.streamlit.app/)
 
-**Live Interactive Dashboard:** [Click here to view the Streamlit App](https://fraud-detection-dashboard-hariharancs.streamlit.app/)
+**Live Interactive Dashboard:** [Click here to view the Streamlit App](https://fraud-detection-dashboard-hariharancs.streamlit.app/) or 
+https://fraud-detection-dashboard-hariharancs.streamlit.app/
 
 Executive Summary
 An end-to-end machine learning and data engineering pipeline designed to identify, segment, and explain fraudulent financial transactions in real time. Facing a severe **96.5% to 3.5% class imbalance**, this architecture leverages **SMOTE** for data synthesis, an advanced **XGBoost Classifier** optimized via 5-fold cross-validation, and **SHAP (SHapley Additive exPlanations)** to provide transparent, case-by-case model interpretability. 
